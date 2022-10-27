@@ -9,27 +9,25 @@ const Main = ({currencyAll}) => {
 
     const setCurrencyForFirst = (id) => {
         const item =  currencyAll.find(el => el.r030 === id);
-        setSecondAmount((firstAmount * item.rate / secondCurrency.rate))
+        setSecondAmount(+(firstAmount * item.rate / secondCurrency.rate).toFixed(2))
         setFirstCurrency(item);
     }
 
     const setCurrencyForSecond = (id) => {
         const item =  currencyAll.find(el => el.r030 === id);
-        setSecondAmount((firstAmount * firstCurrency.rate / item.rate));
+        setSecondAmount(+(firstAmount * firstCurrency.rate / item.rate).toFixed(2));
         setSecondCurrency(item);
     }
 
     const recalculationForSecond = (value) => {
-        if (value === 0) value = '' ; 
-        setSecondAmount((value * firstCurrency.rate / secondCurrency.rate));
-        setFirstAmount(value);
+            setSecondAmount(+(value * firstCurrency.rate / secondCurrency.rate).toFixed(2));
+            setFirstAmount(+value.toFixed(2));
     }
    
     const recalculationForFirst = (value) => {
-        if (value === 0) value = '';
+            setFirstAmount(+(value * secondCurrency.rate / firstCurrency.rate).toFixed(2));
+            setSecondAmount(+value.toFixed(2));
         console.log(value);
-        setFirstAmount((value * secondCurrency.rate / firstCurrency.rate));
-        setSecondAmount(value);
     }
 
     const options = (arr) => {
@@ -42,16 +40,15 @@ const Main = ({currencyAll}) => {
         <div className='main'>
             <div className='currency-wrap container'>
                 <div className='currency-wrap__item'>
-                    <input className='currency-wrap__amount' min={1} value={firstAmount} type="number" 
+                    <input className='currency-wrap__amount' min={1} value={firstAmount!==0?firstAmount:''} type="number" 
                         onChange={(e)=>{recalculationForSecond(+e.target.value)}}/>
                     <select className='currency-wrap__select' name="currency" 
                         onChange={(e) => {setCurrencyForFirst(+e.target.value)}}>
                         {options(currencyAll)}
                     </select>
                 </div>
-            
                 <div className='currency-wrap__item'>
-                    <input className='currency-wrap__amount' min={1} value={secondAmount} type="number" 
+                    <input className='currency-wrap__amount' min={1} value={secondAmount!==0?secondAmount:''} type="number" 
                         onChange={(e)=>{recalculationForFirst(+e.target.value)}}/>
                     <select className='currency-wrap__select' name="currency" 
                         onChange={(e) => {setCurrencyForSecond(+e.target.value)}}>
