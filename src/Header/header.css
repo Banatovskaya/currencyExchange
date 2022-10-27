@@ -1,0 +1,28 @@
+.header {
+    background-color: rgb(124, 94, 94);
+    text-align: center;
+    height: 80px;
+}
+
+.currency-bord {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 300px;
+    font-size: 24px;
+    color: white;
+}
+
+.currency-lable {
+    display: inline;
+    width: 120px;
+}
+
+@media (max-width: 575px) {
+    .currency-bord {
+        font-size: 20px;
+        width: 200px;
+    }
+}

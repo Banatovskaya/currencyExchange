@@ -1,6 +1,7 @@
-import Header from "./header";
-import Main from "./main";
+import Header from "./Header/header";
+import Main from "./Main/main";
 import {useState, useEffect} from 'react';
+import './App.css';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
 			throw err;
 		})
 		const dataForState = await data;
-		dataForState.unshift(uah); //add UAH object
+		dataForState.unshift(uah); //add hrivna object
 	    setDataAll( dataForState);
 		setLoadingStatus("loaded");
     };
