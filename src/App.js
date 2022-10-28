@@ -28,7 +28,7 @@ function App() {
 				}
 			})
 		   .catch((err) => {
-			setLoadingStatus('error')
+			setLoadingStatus('error');
 			throw err;
 		})
 		const dataForState = await data;
@@ -45,7 +45,7 @@ function App() {
 		const DD = addZero(dataCurrency.getDate());
 		const date = String(YYYY) + MM + DD;
 		return date;
-	}
+	};
 
 	function addZero(num) {
 		if (num < 10) {
@@ -55,18 +55,19 @@ function App() {
 	
 	if (loadingStatus === "idle"){
 		return <h1>wait</h1>
-	}
+	};
 
 	if (loadingStatus === "loading"){
 		return <h1>loading</h1>
-	}
+	};
 
 	if (loadingStatus === "error"){
 		return <h1>err</h1>
-	}
+	};
+
 	const findCurrencyByCode = (id) => {
         return  dataAll.find(el => el.r030 === id)
-    }
+    };
 	
 	const eur = findCurrencyByCode(978);
 	const usd = findCurrencyByCode(840);
@@ -77,6 +78,6 @@ function App() {
 			<Main currencyAll={dataAll} loadingStatus={loadingStatus} />
 		</>
 	);
-}
+};
 	
 export default App;

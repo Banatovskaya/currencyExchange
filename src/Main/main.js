@@ -9,30 +9,33 @@ const Main = ({currencyAll}) => {
 
     const setCurrencyForFirst = (id) => {
         const item =  currencyAll.find(el => el.r030 === id);
-        setSecondAmount(+(firstAmount * item.rate / secondCurrency.rate).toFixed(2))
+        setSecondAmount(+(firstAmount * item.rate / secondCurrency.rate).toFixed(4));
         setFirstCurrency(item);
     }
 
     const setCurrencyForSecond = (id) => {
         const item =  currencyAll.find(el => el.r030 === id);
-        setSecondAmount(+(firstAmount * firstCurrency.rate / item.rate).toFixed(2));
-        setSecondCurrency(item);
-    }
+        setSecondAmount(+(firstAmount * firstCurrency.rate / item.rate).toFixed(4));
+        setSecondCurrency(item); 
+    }  
+    //when the amount is changing in any input conversion occurs in both directions
+    //when the currency-name is changing, the amount of currency is changing only in second input
+    //because it is more comfortable for user
+    
 
     const recalculationForSecond = (value) => {
-            setSecondAmount(+(value * firstCurrency.rate / secondCurrency.rate).toFixed(2));
-            setFirstAmount(+value.toFixed(2));
+            setSecondAmount(+(value * firstCurrency.rate / secondCurrency.rate).toFixed(4));
+            setFirstAmount(+value.toFixed(4));
     }
    
     const recalculationForFirst = (value) => {
-            setFirstAmount(+(value * secondCurrency.rate / firstCurrency.rate).toFixed(2));
-            setSecondAmount(+value.toFixed(2));
-        console.log(value);
+            setFirstAmount(+(value * secondCurrency.rate / firstCurrency.rate).toFixed(4));
+            setSecondAmount(+value.toFixed(4));
     }
 
     const options = (arr) => {
         return arr.map((currency) => {
-            return (<option key={currency.r030} value={currency.r030}>{currency.cc}:{currency.txt}</option>)
+            return (<option key={currency.r030} value={currency.r030}>{currency.cc}:{currency.txt}</option>);
         }) ; 
     }
     
